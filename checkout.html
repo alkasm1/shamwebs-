@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>طلب المنتج - Sham Webs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">🛒 Sham Webs</div>
+    <nav>
+      <button onclick="location.href='products.html'">عرض المنتجات</button>
+      <button onclick="location.href='login.html'">تسجيل الدخول</button>
+    </nav>
+  </header>
+
+  <section class="checkout-container">
+    <h2>📦 نموذج طلب المنتج</h2>
+    <form>
+      <label>اسم المنتج:</label>
+      <input type="text" value="كرسي خشبي أنيق" readonly>
+
+      <label>الكمية المطلوبة:</label>
+      <input type="number" value="1" min="1" required>
+
+      <label>الاسم الكامل:</label>
+      <input type="text" placeholder="أدخل اسمك" required>
+
+      <label>رقم الهاتف:</label>
+      <input type="tel" placeholder="مثال: 099XXXXXXX" required>
+
+      <label>المدينة:</label>
+      <select required>
+        <option value="">اختر المدينة</option>
+        <option>دمشق</option>
+        <option>حلب</option>
+        <option>حمص</option>
+        <option>اللاذقية</option>
+        <!-- أضف المزيد حسب الحاجة -->
+      </select>
+
+      <label>العنوان التفصيلي:</label>
+      <textarea rows="3" placeholder="اسم الحي، أقرب نقطة دلالية..." required></textarea>
+
+      <button type="submit">🛒 تأكيد الطلب</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© Sham Webs 2025 - نموذج الطلب</p>
+  </footer>
+
+</body>
+</html>
