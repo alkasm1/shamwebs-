@@ -10,7 +10,6 @@
   <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
 
   <script>
-    // تهيئة Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBaP41WGX2eLVIUvf0r9lt2BjaECh_RADs",
       authDomain: "sham-webs-410bc.firebaseapp.com",
@@ -51,18 +50,25 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
+    // تنفيذ تسجيل الدخول باستخدام إعادة التوجيه
     document.getElementById("googleLogin").addEventListener("click", () => {
-      alert("🚀 جاري فتح نافذة تسجيل الدخول بـ Google...");
-      auth.signInWithPopup(provider)
-        .then((result) => {
-          const user = result.user;
-          alert("✅ تم تسجيل الدخول بنجاح: " + user.displayName);
-          window.location.href = "dashboard/index.html";
-        })
-        .catch((error) => {
-          alert("❌ حدث خطأ أثناء تسجيل الدخول: " + error.message);
-        });
+      alert("📲 سيتم توجيهك لتسجيل الدخول عبر Google...");
+      auth.signInWithRedirect(provider);
     });
+
+    // عند العودة من Google، نحاول استرجاع بيانات المستخدم
+    auth.getRedirectResult()
+      .then((result) => {
+        if (result.user) {
+          alert("✅ تم تسجيل الدخول: " + result.user.displayName);
+          window.location.href = "dashboard/index.html";
+        }
+      })
+      .catch((error) => {
+        if (error.message) {
+          alert("❌ خطأ أثناء تسجيل الدخول: " + error.message);
+        }
+      });
   </script>
 </body>
 </html>
