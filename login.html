@@ -4,9 +4,26 @@
   <meta charset="UTF-8">
   <title>تسجيل الدخول - Sham Webs</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
+  <!-- Firebase SDK (App + Auth) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
+
+  <script>
+    // إعداد مشروع Firebase الخاص بك
+    const firebaseConfig = {
+      apiKey: "AIzaSyBaP41WGX2eLVIUvf0r9lt2BjaECh_RADs",
+      authDomain: "sham-webs-410bc.firebaseapp.com",
+      projectId: "sham-webs-410bc",
+      storageBucket: "sham-webs-410bc.appspot.com",
+      messagingSenderId: "906019058653",
+      appId: "YOUR_APP_ID" // ← لا تنس تبديله بالمعرّف الحقيقي من Firebase
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+
+<body>
   <section class="auth-container">
     <h2>تسجيل الدخول</h2>
     <form action="dashboard/index.html" method="post">
@@ -21,6 +38,5 @@
 
     <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
   </section>
-
 </body>
 </html>
