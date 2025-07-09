@@ -50,25 +50,10 @@
     const auth = firebase.auth();
     const provider = new firebase.auth.GoogleAuthProvider();
 
-    // تنفيذ تسجيل الدخول باستخدام إعادة التوجيه
     document.getElementById("googleLogin").addEventListener("click", () => {
       alert("📲 سيتم توجيهك لتسجيل الدخول عبر Google...");
       auth.signInWithRedirect(provider);
     });
-
-    // عند العودة من Google، نحاول استرجاع بيانات المستخدم
-    auth.getRedirectResult()
-      .then((result) => {
-        if (result.user) {
-          alert("✅ تم تسجيل الدخول: " + result.user.displayName);
-          window.location.href = "dashboard/index.html";
-        }
-      })
-      .catch((error) => {
-        if (error.message) {
-          alert("❌ خطأ أثناء تسجيل الدخول: " + error.message);
-        }
-      });
   </script>
 </body>
 </html>
