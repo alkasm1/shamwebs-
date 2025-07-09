@@ -52,15 +52,15 @@
     const provider = new firebase.auth.GoogleAuthProvider();
 
     document.getElementById("googleLogin").addEventListener("click", () => {
+      alert("🚀 جاري فتح نافذة تسجيل الدخول بـ Google...");
       auth.signInWithPopup(provider)
         .then((result) => {
           const user = result.user;
-          console.log("تم تسجيل الدخول:", user.displayName);
+          alert("✅ تم تسجيل الدخول بنجاح: " + user.displayName);
           window.location.href = "dashboard/index.html";
         })
         .catch((error) => {
-          console.error("خطأ في تسجيل الدخول:", error.message);
-          alert("حدث خطأ أثناء تسجيل الدخول: " + error.message);
+          alert("❌ حدث خطأ أثناء تسجيل الدخول: " + error.message);
         });
     });
   </script>
