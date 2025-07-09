@@ -5,19 +5,19 @@
   <title>تسجيل الدخول - Sham Webs</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase SDK (App + Auth) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
 
   <script>
-    // إعداد مشروع Firebase الخاص بك
+    // تهيئة Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyBaP41WGX2eLVIUvf0r9lt2BjaECh_RADs",
       authDomain: "sham-webs-410bc.firebaseapp.com",
       projectId: "sham-webs-410bc",
       storageBucket: "sham-webs-410bc.appspot.com",
       messagingSenderId: "906019058653",
-      appId: "YOUR_APP_ID" // ← لا تنس تبديله بالمعرّف الحقيقي من Firebase
+      appId: "YOUR_APP_ID" // ← لا تنسَ استبداله بالقيمة الفعلية من Firebase
     };
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -36,7 +36,33 @@
       <button type="submit">دخول</button>
     </form>
 
+    <hr>
+    <p style="text-align:center;">أو يمكنك التسجيل عبر حساب Gmail:</p>
+    <div style="text-align:center; margin-top:10px;">
+      <button id="googleLogin" style="background-color:#db4437; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+        تسجيل الدخول بـ Google
+      </button>
+    </div>
+
     <p>ليس لديك حساب؟ <a href="register.html">إنشاء حساب جديد</a></p>
   </section>
+
+  <script>
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    document.getElementById("googleLogin").addEventListener("click", () => {
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("تم تسجيل الدخول:", user.displayName);
+          window.location.href = "dashboard/index.html";
+        })
+        .catch((error) => {
+          console.error("خطأ في تسجيل الدخول:", error.message);
+          alert("حدث خطأ أثناء تسجيل الدخول: " + error.message);
+        });
+    });
+  </script>
 </body>
 </html>
