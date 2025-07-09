@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>جارٍ تسجيل الدخول...</title>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.1/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBaP41WGX2eLVIUvf0r9lt2BjaECh_RADs",
+      authDomain: "sham-webs-410bc.firebaseapp.com",
+      projectId: "sham-webs-410bc",
+      storageBucket: "sham-webs-410bc.appspot.com",
+      messagingSenderId: "906019058653",
+      appId: "1:906019058653:web:c228bf25fb4a0c9f627c34"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    auth.getRedirectResult()
+      .then((result) => {
+        if (result.user) {
+          alert("✅ تم تسجيل الدخول: " + result.user.displayName);
+          window.location.href = "dashboard/index.html";
+        } else {
+          alert("❌ لم يتم تسجيل الدخول.");
+          window.location.href = "login.html";
+        }
+      })
+      .catch((error) => {
+        alert("خطأ: " + error.message);
+        window.location.href = "login.html";
+      });
+  </script>
+</head>
+<body>
+  <p>جارٍ تسجيل الدخول... الرجاء الانتظار</p>
+</body>
+</html>
