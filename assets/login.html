@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل دخول المطورين</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #fff;
+      font-family: "Segoe UI", sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    button {
+      background-color: #00c896;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00a97c;
+    }
+  </style>
+</head>
+<body>
+  <h2>مرحبًا بك يا مطور 🔧</h2>
+  <p>اختر دورك للدخول إلى لوحة التحكم</p>
+  <button onclick="loginAsDeveloper()">الدخول كمطور تقني</button>
+
+  <script>
+    function loginAsDeveloper() {
+      localStorage.setItem("role", "developer");
+      window.location.href = "accounts.html"; // تأكد أن هذه الصفحة موجودة
+    }
+  </script>
+</body>
+</html>
