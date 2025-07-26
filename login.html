@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <title>الدخول - Sham Webs</title>
-  <link rel="stylesheet" href="styles/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تسجيل الدخول إلى Sham Webs</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: "Segoe UI", sans-serif;
+      text-align: center;
+      padding: 60px;
+    }
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+    li {
+      list-style: none;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #1e90ff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #007acc;
+    }
+  </style>
 </head>
 <body>
-  <h2>اختر طريقة الدخول:</h2>
+  <h1>اختر طريقة الدخول 👇</h1>
+
   <ul>
-    <li><button onclick="location.href='visitor-login.html'">كمستخدم زائر</button></li>
-    <li><button onclick="location.href='store-login.html'">كمتجر</button></li>
-    <li><button onclick="location.href='admin-login.html'">كمشرف</button></li>
-    <li><button onclick="location.href='accounts.html'">كمطور تقني</button></li>
+    <li>
+      <button onclick="loginAsUser()">كمستخدم عادي</button>
+    </li>
+    <li>
+      <button onclick="loginAsDeveloper()">كمطور تقني</button>
+    </li>
   </ul>
+
+  <script>
+    function loginAsUser() {
+      localStorage.setItem("role", "user");
+      window.location.href = "home.html"; // أو أي صفحة رئيسية للمستخدم
+    }
+
+    function loginAsDeveloper() {
+      localStorage.setItem("role", "developer");
+      window.location.href = "accounts.html";
+    }
+  </script>
 </body>
 </html>
