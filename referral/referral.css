@@ -1,0 +1,19 @@
+#referral-box {
+  background-color: #fff7e6;
+  border: 1px solid #f0b429;
+  padding: 1em;
+  border-radius: 8px;
+  font-family: sans-serif;
+}
+
+#referral-box h3 {
+  margin-top: 0;
+  color: #d48f00;
+}
+
+#referral-box code {
+  background: #fff3d1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
