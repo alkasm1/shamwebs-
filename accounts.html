@@ -2,90 +2,43 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8" />
-  <title>لوحة المطور | Sham Webs</title>
-  <link rel="stylesheet" href="assets/styles/style.css" />
+  <title>لوحة المطوّرين | Sham Webs</title>
   <style>
     body {
+      font-family: sans-serif;
       background-color: #111;
       color: #fff;
-      font-family: "Cairo", sans-serif;
+      padding: 40px;
       text-align: center;
-      padding: 2rem;
     }
-    .dev-panel {
-      max-width: 600px;
-      margin: auto;
-      border: 1px solid #555;
-      padding: 2rem;
+    .alert {
+      background-color: #f39c12;
+      padding: 15px;
+      margin-bottom: 30px;
       border-radius: 8px;
-      background-color: #1a1a1a;
-    }
-    input {
-      width: 100%;
-      padding: 0.8rem;
-      margin-top: 0.5rem;
-      border: none;
-      background-color: #222;
-      color: #0f0;
-      font-size: 0.9rem;
-    }
-    button {
-      margin-top: 1rem;
-      padding: 0.7rem 1.2rem;
-      background-color: #fff;
-      color: #000;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 4px;
-    }
-    button:hover {
-      background-color: #0f0;
-      color: #000;
-    }
-    .link-buttons a {
-      display: block;
-      margin: 1rem 0;
-      text-decoration: none;
-      color: #0f0;
-      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <section class="dev-panel">
-    <h2>👨‍💻 لوحة مطوّر Sham</h2>
-    <p>🔗 رابط الإحالة الخاص بك:</p>
-    <input type="text" id="refLink" value="https://shamwebs.com/register.html?ref=ShamDev001" readonly />
-    <button onclick="copyReferral()">📋 نسخ الرابط</button>
 
-    <div class="link-buttons">
-      <a href="account.html">📈 صفحة الإحالة</a>
-      <a href="rewards.html">🎁 صفحة المكافآت</a>
-    </div>
+  <div id="dev-alert" class="alert" style="display: none;">
+    ⚠️ لم يتم تسجيل الدخول — هذه نسخة عرض تجريبيّة للوحة المطوّرين.
+  </div>
 
-    <button onclick="logout()">🔓 تسجيل خروج</button>
-  </section>
+  <h1>مرحبًا بك في لوحة المطوّرين 🔧</h1>
+  <p>هنا تبدأ أدوات إدارة المتاجر، الإحالات، وإعدادات الواجهة.</p>
 
   <script>
-    function copyReferral() {
-      const input = document.getElementById("refLink");
-      input.select();
-      input.setSelectionRange(0, 99999); // للموبايل
-      document.execCommand("copy");
-      alert("✅ تم نسخ رابط الإحالة!");
+    const isDevMode = true; // عرض تجريبي
+
+    if (!sessionStorage.getItem('loggedIn') && isDevMode) {
+      document.getElementById('dev-alert').style.display = 'block';
     }
 
-    function logout() {
-      localStorage.removeItem("role");
-      window.location.href = "login.html";
-    }
-
-    // حماية الصفحة
-    const role = localStorage.getItem("role");
-    if (role !== "developer") {
-      window.location.href = "login.html";
+    if (!sessionStorage.getItem('loggedIn') && !isDevMode) {
+      window.location.href = 'login.html'; // حماية الدخول الحقيقي
     }
   </script>
+
 </body>
 </html>
