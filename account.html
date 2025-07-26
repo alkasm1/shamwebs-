@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>حساب المستخدم</title>
+  <link rel="stylesheet" href="referral/referral.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+      padding: 2em;
+    }
+    .box {
+      background: white;
+      border-radius: 8px;
+      padding: 1.5em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    .info {
+      margin: 1em 0;
+      background-color: #fff4db;
+      border: 1px solid #f0b429;
+      border-radius: 6px;
+      padding: 1em;
+    }
+    .info code {
+      background-color: #fff3d1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .bonus {
+      margin-top: 1em;
+      background: #e9ffe9;
+      border: 1px solid #28a745;
+      padding: 1em;
+      border-radius: 6px;
+      color: #155724;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>👤 حسابك الشخصي</h2>
+
+    <div class="info">
+      <p>🔗 رابط الإحالة الخاص بك:</p>
+      <code id="referral-link">جاري التوليد...</code>
+    </div>
+
+    <div class="bonus">
+      <p>💡 عدد الأشخاص الذين سجلوا عن طريقك: <strong id="ref-count">0</strong></p>
+      <p>🎁 إجمالي المكافآت المكتسبة: <strong id="total-bonus">0</strong> دولار</p>
+    </div>
+  </div>
+
+  <script>
+    // بيانات المستخدم (يفضّل ربطها بقاعدة لاحقًا)
+    const userRefCode = "sham23";
+
+    // بيانات إحالات وهمية من referral.json أو array داخل الذاكرة
+    const referrals = [
+      { referrer: "sham23", bonusGranted: 10 },
+      { referrer: "sham23", bonusGranted: 15 },
+      { referrer: "storeMaster", bonusGranted: 10 }
+    ];
+
+    // توليد رابط الإحالة
+    const referralLink = `${window.location.origin}/register.html?ref=${userRefCode}`;
+    document.getElementById("referral-link").textContent = referralLink;
+
+    // حساب عدد الإحالات والمكافآت
+    const userReferrals = referrals.filter(r => r.referrer === userRefCode);
+    const refCount = userReferrals.length;
+    const totalBonus = userReferrals.reduce((sum, r) => sum + r.bonusGranted, 0);
+
+    document.getElementById("ref-count").textContent = refCount;
+    document.getElementById("total-bonus").textContent = totalBonus;
+  </script>
+
+</body>
+</html>
