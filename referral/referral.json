@@ -1,0 +1,14 @@
+[
+  {
+    "referrer": "sham23",
+    "newUser": "user845",
+    "amountPaid": 40,
+    "bonusGranted": 10
+  },
+  {
+    "referrer": "storeMaster",
+    "newUser": "user982",
+    "amountPaid": 60,
+    "bonusGranted": 15
+  }
+]
