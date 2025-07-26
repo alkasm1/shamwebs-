@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>التسجيل في المتاجر المحلية</title>
+  <link rel="stylesheet" href="referral/referral.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fafc;
+      padding: 2em;
+    }
+    form {
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 0.8em 0 0.3em;
+      font-weight: bold;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.6em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #007bff;
+      color: white;
+      font-weight: bold;
+      margin-top: 1em;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align: center;">📋 تسجيل مستخدم جديد</h2>
+
+  <form id="register-form">
+    <label for="name">الاسم الكامل:</label>
+    <input type="text" id="name" required />
+
+    <label for="email">البريد الإلكتروني:</label>
+    <input type="email" id="email" required />
+
+    <label for="amount">قيمة الاشتراك (بالدولار):</label>
+    <input type="number" id="amount" required />
+
+    <button type="submit">إنشاء حساب</button>
+  </form>
+
+  <script src="referral/referral.js"></script>
+  <script>
+    const referrals = [];
+
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const amount = parseFloat(document.getElementById("amount").value);
+
+      // توليد رمز إحالة للمستخدم الجديد
+      const newUserId = name.toLowerCase().replace(/\s/g, "") + Date.now().toString().slice(-4);
+      
+      // استرجاع رمز إحالة المُحيل من localStorage
+      const referralCode = getReferralCode();
+      const refBonus = referralCode ? Math.round(amount * 0.25) : 0;
+
+      const result = {
+        newUser: newUserId,
+        email: email,
+        amountPaid: amount,
+        referrer: referralCode || "none",
+        bonusGranted: refBonus
+      };
+
+      referrals.push(result);
+
+      console.log("📌 تفاصيل التسجيل:", result);
+      alert("🎉 تم التسجيل بنجاح!" + (refBonus > 0 ? ` ✅ مكافأة ${refBonus}$ للمُحيل (${referralCode})` : ""));
+      
+      // تُصدّر الإحالات لاحقًا إلى referral.json أو قاعدة بيانات
+    });
+  </script>
+</body>
+</html>
