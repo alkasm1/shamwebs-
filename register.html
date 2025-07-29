@@ -2,19 +2,18 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>التسجيل في المتاجر المحلية</title>
-  <link rel="stylesheet" href="referral/referral.css" />
+  <title>واجهة التسجيل - Sham Webs</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f9fafc;
+      background: #f4f6f9;
       padding: 2em;
     }
     form {
       background: #fff;
       padding: 1.5em;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
       max-width: 400px;
       margin: auto;
     }
@@ -28,69 +27,44 @@
       padding: 0.6em;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 1em;
     }
     button {
-      background: #007bff;
+      background: #00c896;
       color: white;
       font-weight: bold;
       margin-top: 1em;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #00a983;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="text-align: center;">📋 تسجيل مستخدم جديد</h2>
+  <h2 style="text-align: center;">📋 تسجيل مستخدم جديد (تجريبي)</h2>
 
-  <form id="register-form">
+  <form>
     <label for="name">الاسم الكامل:</label>
-    <input type="text" id="name" required />
+    <input type="text" id="name" />
 
     <label for="email">البريد الإلكتروني:</label>
-    <input type="email" id="email" required />
+    <input type="email" id="email" />
 
     <label for="amount">قيمة الاشتراك (بالدولار):</label>
-    <input type="number" id="amount" required />
-<button type="button" onclick="goToHome()">إنشاء حساب (عرض تجريبي)</button>
-  <script src="referral/referral.js"></script>
+    <input type="number" id="amount" />
+
+    <button type="button" onclick="goToHome()">إنشاء حساب تجريبي</button>
+  </form>
+
   <script>
-    const referrals = [];
-
-    document.getElementById("register-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const amount = parseFloat(document.getElementById("amount").value);
-
-      // توليد رمز إحالة للمستخدم الجديد
-      const newUserId = name.toLowerCase().replace(/\s/g, "") + Date.now().toString().slice(-4);
-      
-      // استرجاع رمز إحالة المُحيل من localStorage
-      const referralCode = getReferralCode();
-      const refBonus = referralCode ? Math.round(amount * 0.25) : 0;
-
-      const result = {
-        newUser: newUserId,
-        email: email,
-        amountPaid: amount,
-        referrer: referralCode || "none",
-        bonusGranted: refBonus
-      };
-
-      referrals.push(result);
-
-      console.log("📌 تفاصيل التسجيل:", result);
-      alert("🎉 تم التسجيل بنجاح!" + (refBonus > 0 ? ` ✅ مكافأة ${refBonus}$ للمُحيل (${referralCode})` : ""));
-      
-      // تُصدّر الإحالات لاحقًا إلى referral.json أو قاعدة بيانات
-    });
+    function goToHome() {
+      alert("🎉 تم التسجيل بنجاح! (عرض تجريبي فقط)");
+      window.location.href = "index.html"; // لأن register.html في الجذر نفسه
+    }
   </script>
+
 </body>
 </html>
-<script>
-  function goToHome() {
-    alert("🎉 تم التسجيل! (عرض تجريبي فقط)");
-    window.location.href = "../index.html"; // مسار الصفحة الرئيسية حسب الهيكل
-  }
-</script>
