@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>الصفحة الرئيسية - Sham Webs</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+</head>
+<body>
+  <nav>
+    <h2>مرحبًا، <span id="username">👤</span></h2>
+    <button onclick="logout()">تسجيل الخروج</button>
+  </nav>
+
+  <section class="stores-list">
+    <h3>📦 متاجر يمكنك الترويج لها:</h3>
+    
+    <div class="store-card">
+      <img src="../assets/stores/electro.png" alt="متجر إلكترونيات" />
+      <h4>إلكترو ماركت</h4>
+      <p>🧾 العمولة: 8%</p>
+      <button onclick="generateReferral('electro')">روّج الآن</button>
+    </div>
+
+    <div class="store-card">
+      <img src="../assets/stores/fashion.png" alt="متجر أزياء" />
+      <h4>ستايلز فاشن</h4>
+      <p>🧾 العمولة: 12%</p>
+      <button onclick="generateReferral('fashion')">روّج الآن</button>
+    </div>
+
+    <div class="store-card">
+      <img src="../assets/stores/books.png" alt="متجر كتب" />
+      <h4>مكتبة المعرفة</h4>
+      <p>🧾 العمولة: 15%</p>
+      <button onclick="generateReferral('books')">روّج الآن</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© Sham Webs 2025</p>
+  </footer>
+
+  <script src="../scripts/nav.js"></script>
+</body>
+</html>
