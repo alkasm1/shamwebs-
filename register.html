@@ -1,3 +1,4 @@
+ارسل الصفحة بالكامل هذا كود الصفحة 
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -66,8 +67,10 @@
       const email = document.getElementById("email").value.trim();
       const amount = parseFloat(document.getElementById("amount").value);
 
+      // توليد رمز إحالة للمستخدم الجديد
       const newUserId = name.toLowerCase().replace(/\s/g, "") + Date.now().toString().slice(-4);
-
+      
+      // استرجاع رمز إحالة المُحيل من localStorage
       const referralCode = getReferralCode();
       const refBonus = referralCode ? Math.round(amount * 0.25) : 0;
 
@@ -81,16 +84,10 @@
 
       referrals.push(result);
 
-      // حفظ البيانات للمستخدم
-      localStorage.setItem("userName", name);
-      localStorage.setItem("userEmail", email);
-      localStorage.setItem("userRole", "promoter");
-      localStorage.setItem("referral", referralCode || "none");
-
-      alert("🎉 تم التسجيل بنجاح!" + (refBonus > 0 ? ` ✅ مكافأة ${refBonus}$ للمُحيل (${referralCode})` : ""));
-
-      // توجيه المستخدم إلى الصفحة الرئيسية
-      window.location.href = "../pages/home.html";
+      console.log("📌 تفاصيل التسجيل:", result);
+      alert("🎉 تم التسجيل بنجاح!" + (refBonus > 0 ?  ✅ مكافأة ${refBonus}$ للمُحيل (${referralCode}) : ""));
+      
+      // تُصدّر الإحالات لاحقًا إلى referral.json أو قاعدة بيانات
     });
   </script>
 </body>
