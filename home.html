@@ -1,52 +1,68 @@
-<script>
-  const userEmail = localStorage.getItem("userEmail");
-  if (!userEmail) {
-    alert("يعرض موقع shamwebs: يجب تسجيل الدخول أولاً");
-    window.location.href = "../auth/login.html"; // توجيه لصفحة تسجيل الدخول
-  }
-</script>
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>الصفحة الرئيسية - Sham Webs</title>
-  <link rel="stylesheet" href="../styles/style.css" />
+  <title>واجهة التسجيل - عرض تجريبي</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      padding: 2em;
+    }
+    form {
+      background: #fff;
+      padding: 1.5em;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin: 0.8em 0 0.3em;
+      font-weight: bold;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.6em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #00c896;
+      color: white;
+      font-weight: bold;
+      margin-top: 1em;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <nav>
-    <h2>مرحبًا، <span id="username">👤</span></h2>
-    <button onclick="logout()">تسجيل الخروج</button>
-  </nav>
 
-  <section class="stores-list">
-    <h3>📦 متاجر يمكنك الترويج لها:</h3>
-    
-    <div class="store-card">
-      <img src="../assets/stores/electro.png" alt="متجر إلكترونيات" />
-      <h4>إلكترو ماركت</h4>
-      <p>🧾 العمولة: 8%</p>
-      <button onclick="generateReferral('electro')">روّج الآن</button>
-    </div>
+  <h2 style="text-align: center;">📋 تسجيل مستخدم - نسخة تجريبية</h2>
 
-    <div class="store-card">
-      <img src="../assets/stores/fashion.png" alt="متجر أزياء" />
-      <h4>ستايلز فاشن</h4>
-      <p>🧾 العمولة: 12%</p>
-      <button onclick="generateReferral('fashion')">روّج الآن</button>
-    </div>
+  <form id="demo-form">
+    <label for="name">الاسم الكامل:</label>
+    <input type="text" id="name" />
 
-    <div class="store-card">
-      <img src="../assets/stores/books.png" alt="متجر كتب" />
-      <h4>مكتبة المعرفة</h4>
-      <p>🧾 العمولة: 15%</p>
-      <button onclick="generateReferral('books')">روّج الآن</button>
-    </div>
-  </section>
+    <label for="email">البريد الإلكتروني:</label>
+    <input type="email" id="email" />
 
-  <footer>
-    <p>© Sham Webs 2025</p>
-  </footer>
+    <label for="amount">الاشتراك (بالدولار):</label>
+    <input type="number" id="amount" />
 
-  <script src="../scripts/nav.js"></script>
+    <button type="button" onclick="fakeSubmit()">عرض التجاوب</button>
+  </form>
+
+  <script>
+    function fakeSubmit() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const amount = document.getElementById("amount").value;
+
+      alert("✅ شكراً لك " + name + "! تم استلام النموذج التجريبي. لا يتم حفظ أي بيانات.");
+    }
+  </script>
+
 </body>
 </html>
