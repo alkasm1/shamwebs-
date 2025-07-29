@@ -1,3 +1,10 @@
+<script>
+  const userEmail = localStorage.getItem("userEmail");
+  if (!userEmail) {
+    alert("يعرض موقع shamwebs: يجب تسجيل الدخول أولاً");
+    window.location.href = "../auth/login.html"; // توجيه لصفحة تسجيل الدخول
+  }
+</script>
 <!DOCTYPE html>
 <html lang="ar">
 <head>
