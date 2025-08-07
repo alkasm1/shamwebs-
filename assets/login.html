@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تسجيل دخول المطورين</title>
+  <title>تسجيل الدخول</title>
   <style>
     body {
       background-color: #1a1a1a;
@@ -12,6 +12,15 @@
       text-align: center;
       padding: 40px;
     }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 30px;
+    }
+
     button {
       background-color: #00c896;
       color: white;
@@ -22,25 +31,26 @@
       cursor: pointer;
       margin: 10px;
     }
+
     button:hover {
       background-color: #00a97c;
     }
   </style>
 </head>
 <body>
-  <h2>مرحبًا بك يا مطور 🔧</h2>
-  <p>اختر دورك للدخول إلى لوحة التحكم</p>
+  <h2>مرحبًا بك 👋</h2>
+  <p>اختر نوع الدخول:</p>
 
-  <!-- زر المطور -->
+  <!-- زر دخول كمطور -->
   <button onclick="loginAsDeveloper()">الدخول كمطور تقني</button>
 
-  <!-- زر المستخدم العادي -->
+  <!-- زر دخول كمستخدم -->
   <button onclick="loginAsUser()">الدخول كمستخدم عادي</button>
 
   <script>
     function loginAsDeveloper() {
       localStorage.setItem("role", "developer");
-      window.location.href = "accounts.html"; // لوحة المطور
+      window.location.href = "accounts.html"; // تأكد من وجود هذه الصفحة
     }
 
     function loginAsUser() {
