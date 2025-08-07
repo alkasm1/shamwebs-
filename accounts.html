@@ -1,60 +1,102 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <title>لوحة المطور | Sham Webs</title>
-  <link rel="stylesheet" href="assets/styles/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: "Cairo", sans-serif;
       background-color: #111;
       color: #fff;
-      font-family: "Cairo", sans-serif;
-      text-align: center;
-      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
+
     .dev-panel {
-      max-width: 600px;
-      margin: auto;
-      border: 1px solid #555;
-      padding: 2rem;
-      border-radius: 8px;
       background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      padding: 2rem;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 0 10px rgba(0,255,0,0.1);
+      text-align: center;
     }
+
+    h2 {
+      margin-bottom: 1rem;
+      color: #0f0;
+    }
+
+    p {
+      margin: 0.5rem 0;
+    }
+
     input {
       width: 100%;
       padding: 0.8rem;
-      margin-top: 0.5rem;
-      border: none;
+      margin-top: 0.6rem;
+      border: 1px solid #444;
       background-color: #222;
       color: #0f0;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      border-radius: 5px;
     }
+
     button {
       margin-top: 1rem;
       padding: 0.7rem 1.2rem;
-      background-color: #fff;
+      background-color: #0f0;
       color: #000;
       border: none;
       cursor: pointer;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
     }
+
     button:hover {
-      background-color: #0f0;
-      color: #000;
+      background-color: #c6ff00;
     }
+
+    .link-buttons {
+      margin-top: 2rem;
+    }
+
     .link-buttons a {
       display: block;
-      margin: 1rem 0;
+      margin: 0.7rem 0;
       text-decoration: none;
-      color: #0f0;
+      color: #0ff;
       font-weight: bold;
+      transition: color 0.2s;
+    }
+
+    .link-buttons a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .dev-panel {
+        padding: 1.5rem 1rem;
+      }
+
+      input, button {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <section class="dev-panel">
-    <h2>👨‍💻 لوحة مطوّر Sham</h2>
+    <h2>👨‍💻 لوحة مطوّر Sham Webs</h2>
+
     <p>🔗 رابط الإحالة الخاص بك:</p>
     <input type="text" id="refLink" value="https://shamwebs.com/register.html?ref=ShamDev001" readonly />
     <button onclick="copyReferral()">📋 نسخ الرابط</button>
@@ -64,16 +106,17 @@
       <a href="rewards.html">🎁 صفحة المكافآت</a>
     </div>
 
-    <button onclick="logout()">🔓 تسجيل خروج</button>
+    <button onclick="logout()">🔓 تسجيل الخروج</button>
   </section>
 
   <script>
     function copyReferral() {
-      const input = document.getElementById("refLink");
-      input.select();
-      input.setSelectionRange(0, 99999); // للموبايل
-      document.execCommand("copy");
-      alert("✅ تم نسخ رابط الإحالة!");
+      const input = document.getElementById("refLink").value;
+      navigator.clipboard.writeText(input).then(() => {
+        alert("✅ تم نسخ رابط الإحالة!");
+      }).catch(() => {
+        alert("❌ فشل النسخ، جرب يدويًا.");
+      });
     }
 
     function logout() {
@@ -81,7 +124,7 @@
       window.location.href = "login.html";
     }
 
-    // حماية الصفحة
+    // حماية الصفحة من غير المطورين
     const role = localStorage.getItem("role");
     if (role !== "developer") {
       window.location.href = "login.html";
