@@ -41,21 +41,38 @@
   <h2>مرحبًا بك 👋</h2>
   <p>اختر نوع الدخول:</p>
 
-  <!-- زر دخول كمطور -->
-  <button onclick="loginAsDeveloper()">الدخول كمطور تقني</button>
+  <!-- دخول كمستخدم عادي -->
+  <button onclick="login('user')">الدخول كمستخدم عادي</button>
 
-  <!-- زر دخول كمستخدم -->
-  <button onclick="loginAsUser()">الدخول كمستخدم عادي</button>
+  <!-- دخول كصاحب متجر -->
+  <button onclick="login('store')">الدخول كصاحب متجر</button>
+
+  <!-- دخول كمطور -->
+  <button onclick="login('developer')">الدخول كمطور تقني</button>
 
   <script>
-    function loginAsDeveloper() {
-      localStorage.setItem("role", "developer");
-      window.location.href = "account.html"; // تأكد من وجود هذه الصفحة
+    // حفظ رمز الإحالة إن وُجد
+    const urlParams = new URLSearchParams(window.location.search);
+    const refCode = urlParams.get("ref");
+    if (refCode) {
+      localStorage.setItem("referralCode", refCode);
     }
 
-    function loginAsUser() {
-     localStorage.setItem("role", "user");
-      window.location.href = "accounts.html"; // صفحة المستخدم العادي
+    // تسجيل الدخول بناءً على الدور
+    function login(role) {
+      localStorage.setItem("role", role);
+
+      switch (role) {
+        case "user":
+          window.location.href = "user.html";
+          break;
+        case "store":
+          window.location.href = "store.html";
+          break;
+        case "developer":
+          window.location.href = "accounts.html";
+          break;
+      }
     }
   </script>
 </body>
