@@ -2,70 +2,110 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>حساب المستخدم</title>
-  <link rel="stylesheet" href="referral/referral.css" />
+  <title>حساب المستخدم | ShamWebs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f7fa;
-      padding: 2em;
+      background-color: #f0f2f5;
+      padding: 1em;
+      margin: 0;
     }
+
     .box {
       background: white;
-      border-radius: 8px;
-      padding: 1.5em;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 2em;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       max-width: 500px;
-      margin: auto;
+      margin: 2em auto;
     }
+
     h2 {
       text-align: center;
-      margin-bottom: 1em;
+      margin-bottom: 1.5em;
+      color: #333;
     }
+
+    .info, .bonus {
+      margin-bottom: 1.5em;
+      padding: 1em;
+      border-radius: 8px;
+    }
+
     .info {
-      margin: 1em 0;
       background-color: #fff4db;
       border: 1px solid #f0b429;
-      border-radius: 6px;
-      padding: 1em;
+      color: #5f4b00;
     }
+
     .info code {
-      background-color: #fff3d1;
-      padding: 4px 8px;
-      border-radius: 4px;
+      display: block;
+      background-color: #fff1c1;
+      padding: 8px 10px;
+      margin-top: 8px;
+      border-radius: 6px;
       font-weight: bold;
+      direction: ltr;
+      text-align: left;
+      word-break: break-all;
     }
+
+    .copy-btn {
+      margin-top: 0.8em;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      background-color: #f0b429;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .copy-btn:hover {
+      background-color: #e0a51a;
+    }
+
     .bonus {
-      margin-top: 1em;
       background: #e9ffe9;
       border: 1px solid #28a745;
-      padding: 1em;
-      border-radius: 6px;
       color: #155724;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        padding: 1.2em;
+        margin: 1em;
+      }
+
+      .copy-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="box">
-    <h2>👤 حسابك الشخصي</h2>
+    <h2>👤 حساب المستخدم</h2>
 
     <div class="info">
       <p>🔗 رابط الإحالة الخاص بك:</p>
       <code id="referral-link">جاري التوليد...</code>
+      <button class="copy-btn" onclick="copyReferral()">📋 نسخ الرابط</button>
     </div>
 
     <div class="bonus">
-      <p>💡 عدد الأشخاص الذين سجلوا عن طريقك: <strong id="ref-count">0</strong></p>
+      <p>👥 عدد الأشخاص الذين سجلوا عن طريقك: <strong id="ref-count">0</strong></p>
       <p>🎁 إجمالي المكافآت المكتسبة: <strong id="total-bonus">0</strong> دولار</p>
     </div>
   </div>
 
   <script>
-    // بيانات المستخدم (يفضّل ربطها بقاعدة لاحقًا)
+    // رمز الإحالة للمستخدم (مثال)
     const userRefCode = "sham23";
 
-    // بيانات إحالات وهمية من referral.json أو array داخل الذاكرة
+    // بيانات وهمية للإحالات
     const referrals = [
       { referrer: "sham23", bonusGranted: 10 },
       { referrer: "sham23", bonusGranted: 15 },
@@ -83,6 +123,14 @@
 
     document.getElementById("ref-count").textContent = refCount;
     document.getElementById("total-bonus").textContent = totalBonus;
+
+    // وظيفة نسخ الرابط
+    function copyReferral() {
+      const link = document.getElementById("referral-link").textContent;
+      navigator.clipboard.writeText(link).then(() => {
+        alert("✅ تم نسخ رابط الإحالة!");
+      });
+    }
   </script>
 
 </body>
