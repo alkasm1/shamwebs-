@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة المستخدم</title>
+  <style>
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      font-family: "Segoe UI", sans-serif;
+      padding: 30px;
+      direction: rtl;
+    }
+
+    h2 {
+      color: #00c896;
+    }
+
+    #referral-box {
+      background-color: #fff7e6;
+      border: 1px solid #f0b429;
+      padding: 1em;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    code {
+      background: #fff3d1;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>👤 مرحباً بك في لوحة المستخدم</h2>
+
+  <div id="referral-box">
+    <h3>رمز الإحالة الخاص بك:</h3>
+    <p><code id="referralCode">جارٍ التحميل...</code></p>
+
+    <h4>المستخدمون المسجلون عن طريقك:</h4>
+    <ul id="referralsList"></ul>
+
+    <h4>إجمالي المكافآت:</h4>
+    <p><strong id="bonus">0</strong> ريال</p>
+  </div>
+
+  <script>
+    const myCode = "user123"; // يُفترض توليده أو تخزينه سابقاً للمستخدم
+
+    document.getElementById("referralCode").textContent = `${window.location.origin}/login.html?ref=${myCode}`;
+
+    const referralData = [
+      { referrer: "user123", newUser: "userX", amountPaid: 40, bonusGranted: 10 },
+      { referrer: "user123", newUser: "userY", amountPaid: 60, bonusGranted: 15 },
+      { referrer: "storeMaster", newUser: "userZ", amountPaid: 80, bonusGranted: 20 }
+    ];
+
+    const userReferrals = referralData.filter(entry => entry.referrer === myCode);
+    const listEl = document.getElementById("referralsList");
+    let totalBonus = 0;
+
+    userReferrals.forEach(entry => {
+      const li = document.createElement("li");
+      li.textContent = `المستخدم: ${entry.newUser} | دفعة: ${entry.amountPaid} ريال | مكافأة: ${entry.bonusGranted} ريال`;
+      listEl.appendChild(li);
+      totalBonus += entry.bonusGranted;
+    });
+
+    document.getElementById("bonus").textContent = totalBonus;
+  </script>
+</body>
+</html>
