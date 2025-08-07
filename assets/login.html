@@ -20,6 +20,7 @@
       border-radius: 8px;
       font-size: 16px;
       cursor: pointer;
+      margin: 10px;
     }
     button:hover {
       background-color: #00a97c;
@@ -29,12 +30,21 @@
 <body>
   <h2>مرحبًا بك يا مطور 🔧</h2>
   <p>اختر دورك للدخول إلى لوحة التحكم</p>
+
+  <!-- زر المطور -->
   <button onclick="loginAsDeveloper()">الدخول كمطور تقني</button>
+
+  <!-- زر المستخدم العادي -->
+  <button onclick="loginAsUser()">الدخول كمستخدم عادي</button>
 
   <script>
     function loginAsDeveloper() {
       localStorage.setItem("role", "developer");
-      window.location.href = "accounts.html"; // تأكد أن هذه الصفحة موجودة
+      window.location.href = "accounts.html"; // لوحة المطور
+    }
+
+    function loginAsUser() {
+      window.location.href = "account.html"; // صفحة المستخدم العادي
     }
   </script>
 </body>
