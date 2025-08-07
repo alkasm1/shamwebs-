@@ -2,19 +2,107 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تواصل معنا - Sham Webs</title>
-  <link rel="stylesheet" href="styles/style.css" />
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+      direction: rtl;
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: #0b7a75;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #0b7a75;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #099;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h2>راسلنا مباشرة:</h2>
-  <form>
-    <label>الاسم الكامل</label><br />
-    <input type="text" name="name" /><br />
-    <label>البريد الإلكتروني</label><br />
-    <input type="email" name="email" /><br />
-    <label>رسالتك</label><br />
-    <textarea name="message"></textarea><br />
-    <button type="submit">إرسال</button>
-  </form>
+  <div class="contact-container">
+    <h2>📬 تواصل معنا مباشرة</h2>
+    <form onsubmit="sendMessage(event)">
+      <label for="name">الاسم الكامل</label>
+      <input type="text" name="name" id="name" required />
+
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" name="email" id="email" required />
+
+      <label for="message">رسالتك</label>
+      <textarea name="message" id="message" required></textarea>
+
+      <button type="submit">📨 إرسال</button>
+    </form>
+  </div>
+
+  <script>
+    function sendMessage(event) {
+      event.preventDefault(); // لمنع إعادة تحميل الصفحة
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+
+      // ⚠️ هنا يمكنك لاحقًا إرسال البيانات إلى الخادم باستخدام fetch أو AJAX
+
+      alert(`📩 شكراً يا ${name}، تم استلام رسالتك بنجاح!`);
+      
+      // تفريغ النموذج
+      event.target.reset();
+    }
+  </script>
 </body>
 </html>
